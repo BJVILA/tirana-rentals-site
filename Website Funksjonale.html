@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirana Short Term Rentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #FF5A5F;
+            --gold: #FFD700;
+            --text: #2c3e50;
+            --light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        .navy-stripe {
+            height: 8px;
+            background: var(--primary);
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            height: 400px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .slogan {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,90,95,0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            background: #ff4449;
+        }
+
+        .apartment {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .apartment:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: rgba(44, 62, 80, 0.3);
+            border-radius: 2px;
+        }
+
+        .slideshow {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            aspect-ratio: 1600/1200;
+        }
+
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            color: var(--text);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .slide-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev { left: 2rem; }
+        .next { right: 2rem; }
+
+        .info {
+            padding: 2rem;
+        }
+
+        .info h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .info ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .info li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info li::before {
+            content: '✓';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .airbnb-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #FF5A5F, #E04E50);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .airbnb-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-section {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #405DE6, #833AB4, #E1306C, #F77737);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .email-link {
+            display: inline-block;
+            margin: 1rem 0;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1200px) {
+            .apartment {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .slide img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .slogan {
+                font-size: 1.2rem;
+            }
+            
+            .slide img {
+                height: 300px;
+            }
+            
+            .info h2 {
+                font-size: 2rem;
+            }
+
+            .nav-buttons {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .nav-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navy-stripe"></div>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Tirana Short Term Rentals</h1>
+            <p class="slogan">Premium Accommodation in Albania's Capital</p>
+            
+            <div class="nav-buttons">
+                <a href="#bllok" class="nav-btn">Bllok Residence</a>
+                <a href="#liqen" class="nav-btn">Liqen Residence</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Bllok Residence -->
+        <section class="apartment" id="bllok">
+            <div class="slideshow">
+                <div class="slides" id="bllok-slides"></div>
+                <button class="slide-btn prev" onclick="changeSlide('bllok', -1)">❮</button>
+                <button class="slide-btn next" onclick="changeSlide('bllok', 1)">❯</button>
+            </div>
+            <div class="info">
+                <h2>Bllok Residence</h2>
+                <p>A very relaxing, cosy, and spacious flat, boasting an amazing balcony to get fresh air, relax, and see the city from the comfort of your own home.</p>
+                <p>The Apartment is located in the Bllok Area, one of the most dynamic and central parts of the city, with easy access to major nightlife and tourist attractions. The Location is also a 5-minute walk from Skanderbeg Square and at the same time a 5-minute walk from the Grand Park of Tirana.</p>
+                <ul>
+                    <li>4.9 Star Rating on Airbnb ★★★★★ (45+ reviews)</li>
+                    <li>2 bedrooms</li>
+                    <li>2 king-size beds</li>
+                    <li>2 bathrooms</li>
+                    <li>1 bath</li>
+                    <li>1 massive balcony</li>
+                    <li>Fast WiFi</li>
+                </ul>
+                <p><strong>Address:</strong> Blloku, City Center</p>
+                <a href="https://www.airbnb.ie/rooms/1129900133645026617" class="airbnb-btn" target="_blank" rel="noopener noreferrer">Book on Airbnb</a>
+            </div>
+        </section>
+
+        <!-- Liqen Residence -->
+        <section class="apartment" id="liqen">
+            <div class="slideshow">
+                <div class="slides" id="liqen-slides"></div>
+                <button class="slide-btn prev" onclick="changeSlide('liqen', -1)">❮</button>
+                <button class="slide-btn next" onclick="changeSlide('liqen', 1)">❯</button>
+            </div>
+            <div class="info">
+                <h2>Liqen Luxury Residence</h2>
+                <p>Find luxury at this beautiful apartment fitted with all of the amenities to ensure the best experience.</p>
+                <p>The neighbourhood is one of the best in all of Albania, being very safe, exclusive, and noise-free. Situated a five-minute walk away from the Lake Park of Tirana and a two-minute walk from the Zoo of Tirana, it is an amazing spot for those who love the outdoors, fresh air, and peace.</p>
+                <ul>
+                    <li>5 Star Rating on Airbnb ★★★★★</li>
+                    <li>2 bedrooms</li>
+                    <li>2 queen size beds</li>
+                    <li>1 king-size bed</li>
+                    <li>Full kitchen</li>
+                    <li>2 bathrooms</li>
+                    <li>1 hydro massage shower</li>
+                    <li>Brand new smart TVs</li>
+                    <li>500Mbps WiFi - Great for online work</li>
+                </ul>
+                <p><strong>Address:</strong> Near the Zoo of Tirana, 10 minutes away from Bllok</p>
+                <a href="https://www.airbnb.ie/rooms/1133500095352498317" class="airbnb-btn" target="_blank" rel="noopener noreferrer">Book on Airbnb</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Have questions or need assistance? Reach out via WhatsApp or email:</p>
+            <a href="https://wa.me/+355695271465" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                Contact on WhatsApp
+            </a>
+            <a href="mailto:tiranarentals@gmail.com" class="email-link">tiranarentals@gmail.com</a>
+            <p>Follow us on Instagram:</p>
+            <a href="https://www.instagram.com/tirana_shortermrentals/profilecard/?igsh=MXZ1amMwMDUxZmhocg==" class="instagram-btn" target="_blank" rel="noopener noreferrer">
+                Follow on Instagram
+            </a>
+        </section>
+    </main>
+
+    <script>
+        // Image URLs from GitHub
+        const imageBases = {
+            bllok: 'https://raw.githubusercontent.com/BJVILA/WebsiteAirbnb/59c6f5bca8acf4ef21554cb9c9d8c17d69fa9b01/tirana-rentals/BllokFoto',
+            liqen: 'https://raw.githubusercontent.com/BJVILA/WebsiteAirbnb/59c6f5bca8acf4ef21554cb9c9d8c17d69fa9b01/tirana-rentals/LiqenFoto'
+        };
+
+        // Initialize slideshows
+        function initSlideshow(containerId, apartmentType, count) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            for (let i = 1; i <= count; i++) {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide';
+                const img = document.createElement('img');
+                img.src = `${imageBases[apartmentType]}/${i}.jpg`;
+                img.alt = `${apartmentType} residence photo ${i}`;
+                slideDiv.appendChild(img);
+                container.appendChild(slideDiv);
+            }
+        }
+
+        // Slideshow navigation
+        const slides = {
+            bllok: { index: 0, total: 15 },
+            liqen: { index: 0, total: 26 }
+        };
+
+        function changeSlide(apartment, direction) {
+            const container = document.getElementById(`${apartment}-slides`);
+            slides[apartment].index = (slides[apartment].index + direction + slides[apartment].total) % slides[apartment].total;
+            container.style.transform = `translateX(-${slides[apartment].index * 100}%)`;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initSlideshow('bllok-slides', 'bllok', 15);
+            initSlideshow('liqen-slides', 'liqen', 26);
+        });
+    </script>
+</body>
+</html>
